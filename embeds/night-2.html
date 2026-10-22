@@ -284,6 +284,12 @@ footer.site a { color: inherit; }
 .is-embed .band, .is-embed footer.site { display: none; }
 .is-embed:not(.is-embed-home) .crumbs, .is-embed:not(.is-embed-home) .pager { display: none; }
 .is-embed .section { padding-block: 28px; }
+/* Framed by Google Sites: keep the frame's height and scroll inside #app. The host stretches
+   and re-measures pages that grow, which breaks touch scrolling and jumps the view on clicks. */
+html.is-framed, html.is-framed body { height: 100%; overflow: hidden; }
+html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+.framebar { display: flex; justify-content: flex-end; padding-top: 10px; }
+.framebar a { font: 600 .85rem/1 var(--font-display); text-decoration: none; padding: 8px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
 
 @media (max-width: 900px) {
   .nights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -339,6 +345,18 @@ footer.site a { color: inherit; }
 
   if (EMBED) { document.documentElement.setAttribute("data-theme", "light"); document.documentElement.classList.add("is-embed"); }
   if (MODE.home) document.documentElement.classList.add("is-embed-home");
+  var FRAMED = EMBED && window.top !== window.self;
+  if (FRAMED) document.documentElement.classList.add("is-framed");
+
+  // Scrolling goes through #app when framed; scrollIntoView would also scroll the host's frames.
+  function scrollToEl(el, center, smooth) {
+    if (!el) return;
+    if (!FRAMED) { el.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: center ? "center" : "start" }); return; }
+    var box = document.getElementById("app"), r = el.getBoundingClientRect();
+    var top = box.scrollTop + r.top - (center ? (box.clientHeight - r.height) / 2 : 0);
+    box.scrollTo({ top: Math.max(0, top), behavior: smooth ? "smooth" : "auto" });
+  }
+  function scrollToTop() { if (FRAMED) document.getElementById("app").scrollTop = 0; else window.scrollTo(0, 0); }
 
   // ---------- helpers ----------
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -670,7 +688,7 @@ footer.site a { color: inherit; }
     if (scroll) {
       var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       var el = document.getElementById("step-" + session.step);
-      if (el) el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      scrollToEl(el, true, !reduce);
     }
   }
   function endSession(save) {
@@ -685,7 +703,7 @@ footer.site a { color: inherit; }
       done.add(num); saveDone(done);
       var f = document.getElementById("finish");
       f.innerHTML = '<h2 style="font-size:1.35rem">Kol hakavod!</h2>' + finishBody(num, true, minutes);
-      f.scrollIntoView({ block: "center" });
+      scrollToEl(f, true, false);
     }
   }
 
@@ -700,7 +718,7 @@ footer.site a { color: inherit; }
     if (m) {
       app.innerHTML = nightPage(+m[1]);
       document.title = "Night " + m[1] + " · BPY Chanukah Family Learning";
-      if (!MODE.view) window.scrollTo(0, 0);
+      if (!MODE.view) scrollToTop();
     } else if (token === "families" && MODE.view) {
       app.innerHTML = "<main>" + familiesSection() + "</main>";
     } else if (token === "tracker" && EMBED) {
@@ -709,7 +727,7 @@ footer.site a { color: inherit; }
       app.innerHTML = homePage();
       document.title = "BPY Chanukah Family Learning";
       var target = HOME_SECTIONS[token] && document.getElementById(token);
-      if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+      if (target) scrollToEl(target, false, false); else scrollToTop();
       var nav = document.querySelector('.band nav a[href="#' + token + '"]');
       if (nav) { document.querySelectorAll(".band nav a").forEach(function (a) { a.removeAttribute("aria-current"); }); nav.setAttribute("aria-current", "page"); }
     }
@@ -735,6 +753,15 @@ footer.site a { color: inherit; }
     }
   });
 
+  if (FRAMED) {
+    var renderView = route;
+    route = function () {
+      renderView();
+      var href = MODE.home ? "../index.html" + (location.hash || "") : location.href.split("#")[0];
+      document.getElementById("app").insertAdjacentHTML("afterbegin",
+        '<div class="wrap framebar"><a href="' + esc(href) + '" target="_blank" rel="noopener">Open full screen ↗</a></div>');
+    };
+  }
   window.addEventListener("hashchange", route);
   route();
   refreshTracker();
