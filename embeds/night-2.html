@@ -279,8 +279,10 @@ footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwe
 footer.site .motto { font: 600 .8rem var(--font-display); letter-spacing: .1em; text-transform: uppercase; }
 footer.site a { color: inherit; }
 
-/* Embedded in Google Sites: no site chrome, tighter top spacing */
-.is-embed .band, .is-embed footer.site, .is-embed .crumbs, .is-embed .pager { display: none; }
+/* Embedded in Google Sites: no site chrome, tighter top spacing.
+   A home embed keeps in-frame navigation (crumbs, pager); single-view embeds hide it. */
+.is-embed .band, .is-embed footer.site { display: none; }
+.is-embed:not(.is-embed-home) .crumbs, .is-embed:not(.is-embed-home) .pager { display: none; }
 .is-embed .section { padding-block: 28px; }
 
 @media (max-width: 900px) {
@@ -336,6 +338,7 @@ footer.site a { color: inherit; }
   ];
 
   if (EMBED) { document.documentElement.setAttribute("data-theme", "light"); document.documentElement.classList.add("is-embed"); }
+  if (MODE.home) document.documentElement.classList.add("is-embed-home");
 
   // ---------- helpers ----------
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -698,6 +701,8 @@ footer.site a { color: inherit; }
       app.innerHTML = nightPage(+m[1]);
       document.title = "Night " + m[1] + " · BPY Chanukah Family Learning";
       if (!MODE.view) window.scrollTo(0, 0);
+    } else if (token === "families" && MODE.view) {
+      app.innerHTML = "<main>" + familiesSection() + "</main>";
     } else if (token === "tracker" && EMBED) {
       app.innerHTML = '<main class="section"><div class="wrap"><div class="section-head"><span class="eyebrow">Our school goal</span><h2>Fill the jug: 800 hours of family Torah learning</h2></div><div id="tracker-slot">' + trackerHTML() + "</div></div></main>";
     } else {
