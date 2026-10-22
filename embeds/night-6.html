@@ -288,8 +288,32 @@ footer.site a { color: inherit; }
    and re-measures pages that grow, which breaks touch scrolling and jumps the view on clicks. */
 html.is-framed, html.is-framed body { height: 100%; overflow: hidden; }
 html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
-.framebar { display: flex; justify-content: flex-end; padding-top: 10px; }
-.framebar a { font: 600 .85rem/1 var(--font-display); text-decoration: none; padding: 8px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
+.brandband { background: var(--surface); border-bottom: 3px solid var(--band); }
+.brandbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding-block: 12px; }
+.brandbar .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--heading); min-width: 0; }
+.brandbar .logo img { height: clamp(76px, 12vw, 112px); width: auto; display: block; }
+.brandbar .logo span { font: 700 clamp(1.05rem, .9rem + .6vw, 1.35rem)/1.2 var(--font-display); }
+.brandbar .logo small { display: block; font: 500 .85rem/1.3 var(--font-body); color: var(--ink-soft); }
+.brandbar .acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { font: 600 .9rem/1 var(--font-display); text-decoration: none; padding: 10px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--accent); }
+.pill.give { background: var(--flame); border-color: var(--flame); color: #2B1A00; }
+.band .brand img { height: 52px; width: auto; display: block; }
+.band nav a.give { background: var(--flame); color: #2B1A00; opacity: 1; }
+
+/* Dedication: who sponsored tonight's learning */
+.dedication { margin-top: 16px; border-radius: var(--radius); padding: 18px 20px; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; align-items: start; background: var(--flame-soft); border: 1px solid var(--flame); }
+.dedication svg { width: 32px; height: 32px; }
+.dedication .who { font: 700 1.25rem/1.3 var(--font-display); color: var(--ink); }
+.dedication .why { color: var(--ink); }
+.dedication.open { background: var(--surface); border-style: dashed; }
+.dedication .row { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-top: 8px; }
+.ded-line { font-size: .85rem; color: var(--flame-ink); font-weight: 600; }
+.ded-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ded-list li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 2px; min-width: 0; }
+.ded-list li b { font-family: var(--font-display); color: var(--heading); }
+.ded-list li span { font-size: .92rem; color: var(--ink-soft); }
+.ded-list li.taken span { color: var(--ink); }
+@media (max-width: 560px) { .ded-list { grid-template-columns: minmax(0, 1fr); } }
 
 @media (max-width: 900px) {
   .nights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -319,7 +343,7 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
 <script>
 (function () {
   "use strict";
-  var P = {"data": {"nights": [{"n": 1, "title": "A small beginning, a great miracle", "he": "נעשה בו נס והדליקו ממנו שמונה ימים"}, {"n": 2, "title": "One more light, one more step", "he": "מעלין בקדש ואין מורידין"}, {"n": 3, "title": "Our home, our minhag", "he": "נר איש וביתו"}, {"n": 4, "title": "Lights that tell a story", "he": "להראות ולגלות הנס"}, {"n": 5, "title": "Seeing Hashem in the ordinary", "he": "מי שאמר לשמן וידלוק"}, {"n": 6, "title": "Thankfulness we can put into words", "he": "להודות ולהלל לשמך הגדול", "translation": "To thank and praise Your great name.", "ref": "Al HaNissim for Chanukah, concluding words", "url": "https://www.sefaria.org/Siddur_Ashkenaz,_Weekday,_Shacharit,_Amidah,_Thanksgiving", "learn": "Al HaNissim tells of Hashem helping the Jewish people when they faced powerful enemies. It remembers their return to the Beit HaMikdash and ends with thanks and praise. Chanukah is more than receiving gifts or eating a favorite food: we practice noticing, remembering, and thanking. Family connection: a specific thank-you shows that we noticed what someone actually did.", "halacha": "We add Al HaNissim in the Amidah and Birkat HaMazon. If it was forgotten, we do not repeat the entire prayer or Birkat HaMazon just for that omission. Ask an adult to help you find its place in the siddur or birkon your family uses.", "activity": "Find Al HaNissim together, then each give a specific thank-you to another person: name what they did and how it helped. Finish by naming one thing for which your family thanks Hashem.", "younger": "Finish: Thank you for helping me with...", "older": "What is the difference between thanking someone for help and praising a quality they showed?", "questions": ["Name one prayer in which we add Al HaNissim.", "Must we repeat the whole prayer just because we forgot Al HaNissim?"], "answers": ["The Amidah or Birkat HaMazon.", "No."], "deep": "Read the Chanukah paragraph of Al HaNissim on the reverse. Find a phrase about the struggle, a phrase about Hashem's help, and a phrase about the people's response. Explain why the prayer includes all three.", "refs": [["Al HaNissim and omissions: Shulchan Aruch, O.C. 682:1", "https://www.sefaria.org/Shulchan_Arukh,_Orach_Chayim.682.1"]]}, {"n": 7, "title": "Rav Mordechai Eliyahu: a light that lasts", "he": "נר מצוה ותורה אור"}, {"n": 8, "title": "The brightest home is a peaceful home", "he": "גדול השלום"}], "sources": {"6": [{"ref": "Al HaNissim | Chanukah paragraph", "he": "בימי מתתיהו בן יוחנן כהן גדול חשמונאי ובניו, כשעמדה מלכות יון הרשעה על עמך ישראל להשכיחם תורתך ולהעבירם מחקי רצונך, ואתה ברחמיך הרבים עמדת להם בעת צרתם, רבת את ריבם, דנת את דינם, נקמת את נקמתם, מסרת גבורים ביד חלשים, ורבים ביד מעטים, וטמאים ביד טהורים, ורשעים ביד צדיקים, וזדים ביד עוסקי תורתך, ולך עשית שם גדול וקדוש בעולמך, ולעמך ישראל עשית תשועה גדולה ופרקן כהיום הזה. ואחר כך באו בניך לדביר ביתך, ופנו את היכלך, וטהרו את מקדשך, והדליקו נרות בחצרות קדשך, וקבעו שמונת ימי חנכה אלו, להודות ולהלל לשמך הגדול.", "en": "In the days of Mattityahu son of Yochanan, the Kohen Gadol, the Chashmonai, and his sons, the wicked Greek kingdom rose against Your people Israel to make them forget Your Torah and turn them away from the laws of Your will. In Your great mercy, You stood by them in their distress. You fought their struggle, judged their case, and avenged them. You delivered the strong into the hands of the weak, the many into the hands of the few, the impure into the hands of the pure, the wicked into the hands of the righteous, and the arrogant into the hands of those who study Your Torah. You made Yourself a great and holy name in Your world, and brought Your people Israel great salvation and deliverance, as on this day. Afterward, Your children entered the inner chamber of Your House, cleared Your Sanctuary, purified Your Temple, and lit lamps in Your holy courtyards. They established these eight days of Chanukah to thank and praise Your great name.", "url": "https://kotar.cet.ac.il/kotarapp/index/Page.aspx?nBookID=68917554&nPageID=68937830&nTocEntryID=68998326", "note": "Chanukah paragraph, one printed nusach; family siddur wording may differ"}, {"ref": "Shulchan Aruch, O.C. 682:1 | Where it belongs", "he": "כל שמונת ימי חנוכה אומר על הנסים בברכת המזון בברכת הארץ ובתפלה בברכת מודים. ואם לא אמר אין מחזירין אותו.", "en": "On all eight days of Chanukah, one says Al HaNissim in Birkat HaMazon, in the blessing for the land, and in the Amidah, in the blessing of thanksgiving. If one did not say it, one does not repeat.", "url": "https://he.wikisource.org/wiki/שולחן_ערוך_אורח_חיים_תרפב_א", "note": "Opening sentences; later details about remembering mid-blessing omitted"}]}, "discussion": {"6": "Find a phrase about the struggle, a phrase about Hashem's help, and a phrase about the people's response. Use your own siddur's nusach when praying."}}, "config": {"trackerCsvUrl": "", "refreshSeconds": 300, "formUrl": "", "formUrls": {"1": "", "2": "", "3": "", "4": "", "5": "", "6": "", "7": "", "8": ""}, "pdfUrls": {"1": "../pdf/Night-1.pdf", "2": "../pdf/Night-2.pdf", "3": "../pdf/Night-3.pdf", "4": "../pdf/Night-4.pdf", "5": "../pdf/Night-5.pdf", "6": "../pdf/Night-6.pdf", "7": "../pdf/Night-7.pdf", "8": "../pdf/Night-8.pdf", "all": "../pdf/BPY-Chanukah-All-Eight-Nights.pdf"}, "championship": "Monday, December 14 (date to be confirmed)", "officeContact": "the BPY office", "showRecognition": true, "embedPdfUrls": {}}, "mode": {"embed": true, "view": "night6"}} || { data: { nights: [], sources: {}, discussion: {} }, config: {}, mode: {} };
+  var P = {"data": {"nights": [{"n": 1, "title": "A small beginning, a great miracle", "he": "נעשה בו נס והדליקו ממנו שמונה ימים"}, {"n": 2, "title": "One more light, one more step", "he": "מעלין בקדש ואין מורידין"}, {"n": 3, "title": "Our home, our minhag", "he": "נר איש וביתו"}, {"n": 4, "title": "Lights that tell a story", "he": "להראות ולגלות הנס"}, {"n": 5, "title": "Seeing Hashem in the ordinary", "he": "מי שאמר לשמן וידלוק"}, {"n": 6, "title": "Thankfulness we can put into words", "he": "להודות ולהלל לשמך הגדול", "translation": "To thank and praise Your great name.", "ref": "Al HaNissim for Chanukah, concluding words", "url": "https://www.sefaria.org/Siddur_Ashkenaz,_Weekday,_Shacharit,_Amidah,_Thanksgiving", "learn": "Al HaNissim tells of Hashem helping the Jewish people when they faced powerful enemies. It remembers their return to the Beit HaMikdash and ends with thanks and praise. Chanukah is more than receiving gifts or eating a favorite food: we practice noticing, remembering, and thanking. Family connection: a specific thank-you shows that we noticed what someone actually did.", "halacha": "We add Al HaNissim in the Amidah and Birkat HaMazon. If it was forgotten, we do not repeat the entire prayer or Birkat HaMazon just for that omission. Ask an adult to help you find its place in the siddur or birkon your family uses.", "activity": "Find Al HaNissim together, then each give a specific thank-you to another person: name what they did and how it helped. Finish by naming one thing for which your family thanks Hashem.", "younger": "Finish: Thank you for helping me with...", "older": "What is the difference between thanking someone for help and praising a quality they showed?", "questions": ["Name one prayer in which we add Al HaNissim.", "Must we repeat the whole prayer just because we forgot Al HaNissim?"], "answers": ["The Amidah or Birkat HaMazon.", "No."], "deep": "Read the Chanukah paragraph of Al HaNissim on the reverse. Find a phrase about the struggle, a phrase about Hashem's help, and a phrase about the people's response. Explain why the prayer includes all three.", "refs": [["Al HaNissim and omissions: Shulchan Aruch, O.C. 682:1", "https://www.sefaria.org/Shulchan_Arukh,_Orach_Chayim.682.1"]]}, {"n": 7, "title": "Rav Mordechai Eliyahu: a light that lasts", "he": "נר מצוה ותורה אור"}, {"n": 8, "title": "The brightest home is a peaceful home", "he": "גדול השלום"}], "sources": {"6": [{"ref": "Al HaNissim | Chanukah paragraph", "he": "בימי מתתיהו בן יוחנן כהן גדול חשמונאי ובניו, כשעמדה מלכות יון הרשעה על עמך ישראל להשכיחם תורתך ולהעבירם מחקי רצונך, ואתה ברחמיך הרבים עמדת להם בעת צרתם, רבת את ריבם, דנת את דינם, נקמת את נקמתם, מסרת גבורים ביד חלשים, ורבים ביד מעטים, וטמאים ביד טהורים, ורשעים ביד צדיקים, וזדים ביד עוסקי תורתך, ולך עשית שם גדול וקדוש בעולמך, ולעמך ישראל עשית תשועה גדולה ופרקן כהיום הזה. ואחר כך באו בניך לדביר ביתך, ופנו את היכלך, וטהרו את מקדשך, והדליקו נרות בחצרות קדשך, וקבעו שמונת ימי חנכה אלו, להודות ולהלל לשמך הגדול.", "en": "In the days of Mattityahu son of Yochanan, the Kohen Gadol, the Chashmonai, and his sons, the wicked Greek kingdom rose against Your people Israel to make them forget Your Torah and turn them away from the laws of Your will. In Your great mercy, You stood by them in their distress. You fought their struggle, judged their case, and avenged them. You delivered the strong into the hands of the weak, the many into the hands of the few, the impure into the hands of the pure, the wicked into the hands of the righteous, and the arrogant into the hands of those who study Your Torah. You made Yourself a great and holy name in Your world, and brought Your people Israel great salvation and deliverance, as on this day. Afterward, Your children entered the inner chamber of Your House, cleared Your Sanctuary, purified Your Temple, and lit lamps in Your holy courtyards. They established these eight days of Chanukah to thank and praise Your great name.", "url": "https://kotar.cet.ac.il/kotarapp/index/Page.aspx?nBookID=68917554&nPageID=68937830&nTocEntryID=68998326", "note": "Chanukah paragraph, one printed nusach; family siddur wording may differ"}, {"ref": "Shulchan Aruch, O.C. 682:1 | Where it belongs", "he": "כל שמונת ימי חנוכה אומר על הנסים בברכת המזון בברכת הארץ ובתפלה בברכת מודים. ואם לא אמר אין מחזירין אותו.", "en": "On all eight days of Chanukah, one says Al HaNissim in Birkat HaMazon, in the blessing for the land, and in the Amidah, in the blessing of thanksgiving. If one did not say it, one does not repeat.", "url": "https://he.wikisource.org/wiki/שולחן_ערוך_אורח_חיים_תרפב_א", "note": "Opening sentences; later details about remembering mid-blessing omitted"}]}, "discussion": {"6": "Find a phrase about the struggle, a phrase about Hashem's help, and a phrase about the people's response. Use your own siddur's nusach when praying."}}, "config": {"trackerCsvUrl": "", "refreshSeconds": 300, "formUrl": "", "formUrls": {"1": "", "2": "", "3": "", "4": "", "5": "", "6": "", "7": "", "8": ""}, "pdfUrls": {"1": "../pdf/Night-1.pdf", "2": "../pdf/Night-2.pdf", "3": "../pdf/Night-3.pdf", "4": "../pdf/Night-4.pdf", "5": "../pdf/Night-5.pdf", "6": "../pdf/Night-6.pdf", "7": "../pdf/Night-7.pdf", "8": "../pdf/Night-8.pdf", "all": "../pdf/BPY-Chanukah-All-Eight-Nights.pdf"}, "championship": "Monday, December 14 (date to be confirmed)", "officeContact": "the BPY office", "showRecognition": true, "embedPdfUrls": {}, "donateUrl": "https://www.benporatyosef.org/apps/pages/donatenow", "dedicationContact": "giving@benporatyosef.org", "dedicationsCsvUrl": "", "dedications": {"1": {"by": "", "note": ""}, "2": {"by": "", "note": ""}, "3": {"by": "", "note": ""}, "4": {"by": "", "note": ""}, "5": {"by": "", "note": ""}, "6": {"by": "", "note": ""}, "7": {"by": "", "note": ""}, "8": {"by": "", "note": ""}}}, "mode": {"embed": true, "view": "night6"}} || { data: { nights: [], sources: {}, discussion: {} }, config: {}, mode: {} };
   var NIGHTS = P.data.nights, SOURCES = P.data.sources, DISCUSS = P.data.discussion;
   var CFG = P.config || {}, MODE = P.mode || {};
   var EMBED = !!MODE.embed;
@@ -384,6 +408,17 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
   function loadDone() { try { return new Set(JSON.parse(localStorage.getItem(STORE_KEY) || "[]")); } catch (e) { return new Set(); } }
   function saveDone(set) { try { localStorage.setItem(STORE_KEY, JSON.stringify(Array.from(set))); } catch (e) { } }
   var done = loadDone();
+
+  var LOGO = CFG.logoUrl || "https://www.benporatyosef.org/pics/header_logo.png";
+  var LOGO_WHITE = CFG.logoWhiteUrl || "https://www.benporatyosef.org/pics/footer_logo.png";
+  var DONATE = CFG.donateUrl || "";
+  var GIVING = CFG.dedicationContact || "";
+  var DEDICATIONS = {};
+  Object.keys(CFG.dedications || {}).forEach(function (k) {
+    var d = CFG.dedications[k] || {};
+    if (d.by) DEDICATIONS[k] = { by: d.by, note: d.note || "" };
+  });
+  function dedication(n) { return DEDICATIONS[String(n)] || null; }
 
   function pdfUrl(key) { return (CFG.pdfUrls || {})[key] || ""; }
   function formUrl(n, minutes) {
@@ -502,11 +537,11 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
   // ---------- pages ----------
   function band(active) {
     function link(href, label, key) { return '<a href="#' + href + '"' + (active === key ? ' aria-current="page"' : "") + ">" + label + "</a>"; }
-    return '<header class="band"><div class="wrap"><a class="brand" href="#home"><span class="brand-mark">BPY</span><span class="brand-text"><b>Chanukah Family Learning</b><span>Ben Porat Yosef · <span class="he" lang="he">בן פורת יוסף</span></span></span></a>' +
-      "<nav aria-label=\"Site\">" + link("home", "Tonight", "home") + link("nights", "Eight nights", "nights") + link("goal", "School goal", "goal") + link("families", "For families", "families") + "</nav></div></header>";
+    return '<header class="band"><div class="wrap"><a class="brand" href="#home"><img src="' + esc(LOGO_WHITE) + '" alt="Ben Porat Yosef"><span class="brand-text"><b>Chanukah Family Learning</b><span>Ben Porat Yosef · <span class="he" lang="he">בן פורת יוסף</span></span></span></a>' +
+      "<nav aria-label=\"Site\">" + link("home", "Tonight", "home") + link("nights", "Eight nights", "nights") + link("goal", "School goal", "goal") + link("families", "For families", "families") + (DONATE ? ext(DONATE, "Donate", "give") : "") + "</nav></div></header>";
   }
   function footer() {
-    return '<footer class="site"><div class="wrap"><span class="motto">Simcha through Torah, family &amp; connection</span><span>Ben Porat Yosef · Eight Lights, One Community · Chanukah 5787</span></div></footer>';
+    return '<footer class="site"><div class="wrap"><span class="motto">Simcha through Torah, family &amp; connection</span><span>Ben Porat Yosef · Eight Lights, One Community · Chanukah 5787' + (DONATE ? " · " + ext(DONATE, "Support BPY") : "") + '</span></div></footer>';
   }
 
   function tonightCard() {
@@ -522,6 +557,7 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
     var n = NIGHTS[t.n - 1];
     return '<div class="tonight-card"><span class="eyebrow">Tonight · ' + dateLabel(t.n, true) + '</span><h2>Night ' + t.n + ": " + esc(n.title) + "</h2>" +
       (SHABBAT[t.n] ? '<p class="hint">' + esc(SHABBAT[t.n].title) + "</p>" : "") +
+      (dedication(t.n) ? '<p class="ded-line">Tonight\'s learning is dedicated by ' + esc(dedication(t.n).by) + "</p>" : "") +
       '<div class="row"><a class="btn" href="#night' + t.n + '">Start Night ' + t.n + "</a>" + (done.has(t.n) ? '<span class="chip done">Done tonight</span>' : "") + "</div></div>";
   }
 
@@ -552,14 +588,34 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
       if (done.has(n.n)) chips += '<span class="chip done">Done</span>';
       if (SHABBAT[n.n]) chips += '<span class="chip shabbat">' + (n.n === 2 ? "After Shabbat" : "Print before Shabbat") + "</span>";
       h += '<a class="night-card' + (pend === n.n ? " is-tonight" : "") + '" href="#night' + n.n + '"><div class="top"><span class="n">' + n.n + '</span><span class="date">' + dateLabel(n.n) + "</span></div>" +
-        "<h3>" + esc(n.title) + '</h3><p class="he" lang="he">' + esc(n.he) + "</p>" + (chips ? '<div class="chips">' + chips + "</div>" : "") + "</a>";
+        "<h3>" + esc(n.title) + '</h3><p class="he" lang="he">' + esc(n.he) + "</p>" +
+        (dedication(n.n) ? '<p class="ded-line">Dedicated by ' + esc(dedication(n.n).by) + "</p>" : "") + (chips ? '<div class="chips">' + chips + "</div>" : "") + "</a>";
     });
     h += "</div>" + (pdfUrl("all") ? '<p class="print-all">' + ext(pdfUrl("all"), "Download all eight printable sheets (PDF)") + "<span>Print portrait, two-sided, flip on long edge. Sources are on the back.</span></p>" : "") + "</div></section>";
 
     h += '<section class="section" id="goal"><div class="wrap"><div class="section-head"><span class="eyebrow">Our school goal</span><h2>Fill the jug: 800 hours of family Torah learning</h2><p class="lede">Together, BPY families are filling one jug of oil. Celebrations at 400, 600 and 800 hours.</p></div><div id="tracker-slot">' + trackerHTML() + "</div></div></section>";
 
+    h += dedicateSection();
     h += familiesSection();
     return h + "</main>" + footer();
+  }
+
+  function dedicateSection() {
+    var h = '<section class="section" id="dedicate"><div class="wrap"><div class="section-head"><span class="eyebrow">Dedications</span><h2>Dedicate a night of learning</h2>' +
+      '<p class="lede">Sponsor one night of family Torah learning in honor or in memory of someone special. Each dedication appears on that night\'s page for every BPY family.</p></div><ul class="ded-list">';
+    NIGHTS.forEach(function (n) {
+      var d = dedication(n.n);
+      h += '<li class="' + (d ? "taken" : "") + '"><b>Night ' + n.n + " · " + dateLabel(n.n) + "</b><span>" +
+        (d ? "Dedicated by " + esc(d.by) + (d.note ? ", " + esc(d.note) : "") : "Available for dedication") + "</span></li>";
+    });
+    h += "</ul>" + giveRow() + "</div></section>";
+    return h;
+  }
+  function giveRow() {
+    if (!DONATE && !GIVING) return "";
+    return '<div class="row" style="display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:16px">' +
+      (DONATE ? ext(DONATE, "Dedicate or donate", "btn") : "") +
+      (GIVING ? '<span class="hint">Questions about dedications: <b>' + esc(GIVING) + "</b></span>" : "") + "</div>";
   }
 
   function familiesSection() {
@@ -592,6 +648,18 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
   }
   function qa(q, a) { return '<details class="qa"><summary>' + esc(q) + '</summary><p class="a">' + esc(a) + "</p></details>"; }
 
+  function dedicationCard(num) {
+    var d = dedication(num);
+    if (d) {
+      return '<aside class="dedication" aria-label="Dedication">' + ICON_CANDLE + "<div><span class=\"eyebrow\">Tonight's learning is dedicated by</span>" +
+        '<p class="who">' + esc(d.by) + "</p>" + (d.note ? '<p class="why">' + esc(d.note) + "</p>" : "") + "</div></aside>";
+    }
+    if (!DONATE && !GIVING) return "";
+    return '<aside class="dedication open" aria-label="Dedicate this night">' + ICON_CANDLE + "<div><span class=\"eyebrow\">Dedicate this night</span>" +
+      "<p>Sponsor Night " + num + " of family learning in honor or in memory of someone special. Your dedication will appear here for every BPY family learning tonight.</p>" +
+      giveRow() + "</div></aside>";
+  }
+
   var ICON_CANDLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-2 3-3 4.5-3 6.3A3 3 0 0 0 12 11a3 3 0 0 0 3-2.7C15 6.5 14 5 12 2z" style="fill:var(--flame)"/><rect x="9" y="12" width="6" height="10" rx="1.5" style="fill:var(--accent)"/></svg>';
 
   function nightPage(num) {
@@ -603,6 +671,7 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
       '<div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">10 minutes together</span><span class="chip">Optional 5–10 minutes deeper</span><span class="chip">K–8</span></div></div>' +
       menorahSVG({ lit: lit, label: num + " lights tonight, plus the shamash" }) + "</div>";
     h += '<figure class="verse" style="margin:0"><p class="he" lang="he">' + esc(n.he) + '</p><p class="tr">' + esc(n.translation) + '</p><p class="ref">' + ext(n.url, esc(n.ref)) + " · Short excerpt; original English translation.</p></figure>";
+    h += dedicationCard(num);
     if (SHABBAT[num]) h += '<div class="notice">' + ICON_CANDLE + "<div><b>" + esc(SHABBAT[num].title) + ".</b> " + esc(SHABBAT[num].text) + "</div></div>";
 
     h += '<div class="prep">' +
@@ -753,18 +822,36 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
     }
   });
 
-  if (FRAMED) {
+  // Embeds have no site band, so each one opens with the school logo, a donate link and,
+  // inside Google Sites, a way out to full screen.
+  if (EMBED) {
     var renderView = route;
     route = function () {
       renderView();
-      var href = MODE.home ? "../index.html" + (location.hash || "") : location.href.split("#")[0];
+      var full = MODE.home ? "../index.html" + (location.hash || "") : location.href.split("#")[0];
       document.getElementById("app").insertAdjacentHTML("afterbegin",
-        '<div class="wrap framebar"><a href="' + esc(href) + '" target="_blank" rel="noopener">Open full screen ↗</a></div>');
+        '<div class="brandband"><div class="wrap brandbar"><span class="logo"><img src="' + esc(LOGO) + '" alt="Ben Porat Yosef"><span>Chanukah Family Learning<small>Eight Lights, One Community</small></span></span>' +
+        '<span class="acts">' + (DONATE ? ext(DONATE, "Donate", "pill give") : "") +
+        (FRAMED ? ext(full, "Open full screen ↗", "pill") : "") + "</span></div></div>");
     };
   }
   window.addEventListener("hashchange", route);
   route();
   refreshTracker();
+  if (CFG.dedicationsCsvUrl) {
+    // Columns: night, dedicated_by, note. The sheet wins over config.json.
+    fetch(CFG.dedicationsCsvUrl, { cache: "no-store" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (t) {
+      var rows = parseCSV((t || "").trim()); if (rows.length < 2) return;
+      var h = rows[0].map(function (x) { return x.trim().toLowerCase(); });
+      var iN = h.indexOf("night"), iB = h.indexOf("dedicated_by"), iW = h.indexOf("note");
+      if (iN < 0 || iB < 0) return;
+      rows.slice(1).forEach(function (r) {
+        var n = parseInt(r[iN], 10), by = (r[iB] || "").trim();
+        if (n >= 1 && n <= 8) { if (by) DEDICATIONS[n] = { by: by, note: iW >= 0 ? (r[iW] || "").trim() : "" }; else delete DEDICATIONS[n]; }
+      });
+      if (!session) route();
+    }).catch(function () { });
+  }
   if (CFG.trackerCsvUrl) setInterval(refreshTracker, Math.max(60, CFG.refreshSeconds || 300) * 1000);
 })();
 </script>
