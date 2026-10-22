@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>BPY Chanukah Family Learning</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@400;500;700&family=Rubik:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: a menorah is the map. Navy school band on top, eight lamps lead to eight nights;
+   each night is a guided ten-minute table with steps sized by their minutes. */
+:root {
+  --band: #00426B;        /* BPY navy */
+  --band-ink: #FFFFFF;
+  --bg: #F3F7FA;
+  --surface: #FFFFFF;
+  --surface-2: #E8F0F6;
+  --ink: #0F2B40;
+  --ink-soft: #4B6276;
+  --line: #D2DEE8;
+  --heading: #00426B;
+  --accent: #005487;      /* BPY blue */
+  --accent-ink: #FFFFFF;
+  --sky: #3E9BD3;         /* light end of the logo gradient */
+  --go: #76BC21;          /* BPY green */
+  --go-ink: #3F7A0B;
+  --go-soft: #EAF5DC;
+  --flame: #F2A93B;
+  --flame-ink: #8A5200;
+  --flame-soft: #FDF1DC;
+  --oil-top: #F6C25A;
+  --oil-bottom: #D98E1B;
+  --metal: #8FA4B5;
+  --font-display: "Rubik", "Assistant", system-ui, sans-serif;
+  --font-body: "Assistant", "Rubik", system-ui, sans-serif;
+  --font-hebrew: "Frank Ruhl Libre", "Times New Roman", serif;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --band: #05253D; --band-ink: #F2F7FB;
+    --bg: #0A1A28; --surface: #10263A; --surface-2: #163250; --ink: #E5EEF5; --ink-soft: #A2B6C8; --line: #24445F;
+    --heading: #A9D3F2; --accent: #6CB8EC; --accent-ink: #062033; --sky: #8CCBF0;
+    --go: #8FD13F; --go-ink: #A6DE62; --go-soft: #1C3416;
+    --flame: #F5B94A; --flame-ink: #F7C871; --flame-soft: #3A2A10;
+    --oil-top: #F8CB6A; --oil-bottom: #DB9327; --metal: #5F7A92;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --band: #05253D; --band-ink: #F2F7FB;
+  --bg: #0A1A28; --surface: #10263A; --surface-2: #163250; --ink: #E5EEF5; --ink-soft: #A2B6C8; --line: #24445F;
+  --heading: #A9D3F2; --accent: #6CB8EC; --accent-ink: #062033; --sky: #8CCBF0;
+  --go: #8FD13F; --go-ink: #A6DE62; --go-soft: #1C3416;
+  --flame: #F5B94A; --flame-ink: #F7C871; --flame-soft: #3A2A10;
+  --oil-top: #F8CB6A; --oil-bottom: #DB9327; --metal: #5F7A92;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--band); }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible, .lamp:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--heading); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.1rem); font-weight: 800; letter-spacing: -0.015em; }
+h2 { font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 600 0.78rem/1.3 var(--font-display); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-soft); }
+.lede { font-size: 1.2rem; color: var(--ink-soft); max-width: 60ch; }
+.he { font-family: var(--font-hebrew); direction: rtl; unicode-bidi: isolate; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+  font: 600 1rem/1 var(--font-display); padding: 13px 18px; border-radius: 999px;
+  border: 2px solid var(--accent); background: var(--accent); color: var(--accent-ink);
+  text-decoration: none; cursor: pointer; min-height: 46px;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.go { background: var(--go); border-color: var(--go); color: #10260A; }
+.btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font: 600 0.78rem/1 var(--font-display); padding: 6px 10px; border-radius: 999px; background: var(--surface-2); color: var(--ink-soft); white-space: nowrap; }
+.chip.tonight { background: var(--flame-soft); color: var(--flame-ink); }
+.chip.done { background: var(--go-soft); color: var(--go-ink); }
+.chip.shabbat { background: var(--surface-2); color: var(--heading); }
+.chip.sample { background: var(--flame-soft); color: var(--flame-ink); }
+.section { padding-block: clamp(40px, 6vw, 72px); }
+.section + .section { border-top: 1px solid var(--line); }
+.section-head { display: grid; gap: 8px; margin-bottom: 28px; max-width: 70ch; }
+
+/* School band */
+.band { background: var(--band); color: var(--band-ink); }
+.band .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-block: 14px; }
+.brand { display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+.brand-mark { font: 800 1.5rem/1 var(--font-display); letter-spacing: 0.02em; background: linear-gradient(180deg, #FFFFFF 10%, #9FD3F4 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.brand-text { display: grid; line-height: 1.15; }
+.brand-text b { font: 600 0.95rem/1.2 var(--font-display); }
+.brand-text span { font-size: 0.8rem; opacity: .8; }
+.band nav { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.band nav a { color: inherit; text-decoration: none; font: 500 0.92rem/1 var(--font-display); padding: 9px 12px; border-radius: 999px; opacity: .9; }
+.band nav a:hover, .band nav a[aria-current="page"] { background: rgba(255,255,255,.14); opacity: 1; }
+
+/* Hero */
+.hero { padding-block: clamp(32px, 5vw, 60px) clamp(28px, 4vw, 48px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.hero-copy { display: grid; gap: 18px; min-width: 0; }
+.tonight-card { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.tonight-card .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.menorah-wrap { min-width: 0; display: grid; gap: 8px; justify-items: center; }
+.menorah { width: 100%; max-width: 520px; height: auto; overflow: visible; }
+.menorah .metal { fill: var(--metal); }
+.menorah .cup { fill: var(--metal); }
+.menorah .num { fill: var(--ink-soft); font: 600 13px var(--font-display); text-anchor: middle; }
+.menorah .flame { fill: var(--flame); }
+.menorah .flame-core { fill: #FFF3D1; }
+.menorah .glow { fill: var(--flame); opacity: .22; }
+.menorah .wick { stroke: var(--ink-soft); stroke-width: 2; }
+.menorah .pending { fill: none; stroke: var(--flame); stroke-width: 2; stroke-dasharray: 3 3; }
+.lamp { cursor: pointer; }
+.lamp:hover .cup { fill: var(--accent); }
+.menorah .hit { fill: transparent; }
+@media (prefers-reduced-motion: no-preference) {
+  .menorah .flame-g { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker 2.6s ease-in-out infinite; }
+  .menorah .lamp:nth-of-type(2n) .flame-g { animation-delay: -1.1s; }
+  .menorah .pending { animation: breathe 1.8s ease-in-out infinite; }
+}
+@keyframes flicker { 0%,100% { transform: scale(1, 1); } 40% { transform: scale(.94, 1.05); } 70% { transform: scale(1.03, .97); } }
+@keyframes breathe { 50% { opacity: .35; } }
+.menorah-caption { font-size: .9rem; color: var(--ink-soft); text-align: center; }
+
+/* Ten-minute ruler: widths are minutes */
+.ruler { display: grid; grid-template-columns: 3fr minmax(118px, 1fr) 4fr 2fr; gap: 6px; }
+.ruler .seg { background: var(--surface); border: 1px solid var(--line); border-top: 6px solid var(--accent); border-radius: 10px; padding: 14px 12px; min-width: 0; display: grid; gap: 4px; align-content: start; }
+.ruler .seg:nth-child(2) { border-top-color: var(--sky); }
+.ruler .seg:nth-child(3) { border-top-color: var(--go); }
+.ruler .seg:nth-child(4) { border-top-color: var(--flame); }
+.ruler .min { font: 700 1.5rem/1 var(--font-display); color: var(--heading); font-variant-numeric: tabular-nums; }
+.ruler .min small { font-size: .8rem; font-weight: 600; color: var(--ink-soft); }
+.ruler .what { font: 600 .98rem/1.25 var(--font-display); color: var(--ink); overflow-wrap: anywhere; }
+.ruler .how { font-size: .9rem; color: var(--ink-soft); line-height: 1.4; }
+.deeper-strip { margin-top: 12px; border: 2px dashed var(--line); border-radius: 10px; padding: 12px 14px; color: var(--ink-soft); font-size: .95rem; }
+.deeper-strip b { color: var(--ink); font-family: var(--font-display); }
+
+/* Nights grid */
+.nights { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.night-card { display: grid; gap: 10px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 16px 18px; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; min-width: 0; }
+.night-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.night-card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.night-card .n { font: 800 2rem/1 var(--font-display); color: var(--accent); font-variant-numeric: tabular-nums; }
+.night-card .date { font: 600 .8rem/1.2 var(--font-display); color: var(--ink-soft); text-align: right; }
+.night-card h3 { font-size: 1.05rem; }
+.night-card .he { font-size: 1.15rem; color: var(--ink-soft); line-height: 1.4; }
+.night-card .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.night-card.is-tonight { border: 2px solid var(--flame); }
+.print-all { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; color: var(--ink-soft); font-size: .95rem; }
+
+/* Oil jug tracker */
+.tracker { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+.jug { width: 100%; max-width: 300px; height: auto; justify-self: center; }
+.jug .vessel { fill: var(--surface-2); stroke: var(--heading); stroke-width: 3; }
+.jug .handle { fill: none; stroke: var(--heading); stroke-width: 7; stroke-linecap: round; }
+.jug .seal { fill: var(--surface); stroke: var(--heading); stroke-width: 2; }
+.jug .tick { stroke: var(--ink-soft); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.jug .tick-label { fill: var(--ink-soft); font: 600 12px var(--font-display); }
+.jug .tick-label.reached { fill: var(--go-ink); }
+.jug .surface-line { stroke: #FFF1C9; stroke-width: 2; opacity: .8; }
+.jug .flame { fill: var(--flame); }
+.jug .flame-off { fill: none; stroke: var(--metal); stroke-width: 1.5; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 2px; min-width: 0; }
+.stat .v { font: 700 clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem)/1.1 var(--font-display); color: var(--heading); font-variant-numeric: tabular-nums; }
+.stat .k { font-size: .9rem; color: var(--ink-soft); }
+.progress { margin-top: 18px; display: grid; gap: 8px; }
+.bar { position: relative; height: 14px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.bar i { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--oil-bottom), var(--oil-top)); border-radius: inherit; }
+.bar-marks { position: relative; height: 1.2em; font: 600 .8rem var(--font-display); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.bar-marks span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.bar-marks span:first-child { transform: none; }
+.bar-marks span:last-child { transform: translateX(-100%); }
+.tracker-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin-top: 14px; font-size: .9rem; color: var(--ink-soft); }
+.explain { margin-top: 18px; background: var(--surface-2); border-radius: 12px; padding: 14px 16px; font-size: .95rem; }
+
+/* Families */
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.checklist li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: start; }
+.checklist li::before { content: ""; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--go-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%2376BC21' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat; }
+.faq { display: grid; gap: 10px; }
+details.qa { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+details.qa summary { cursor: pointer; list-style: none; padding: 14px 16px; font: 600 1rem/1.35 var(--font-display); color: var(--ink); display: flex; justify-content: space-between; gap: 12px; }
+details.qa summary::-webkit-details-marker { display: none; }
+details.qa summary::after { content: "+"; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+details.qa[open] summary::after { content: "–"; }
+details.qa .a { padding: 0 16px 16px; color: var(--ink-soft); }
+.milestones { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+.milestone { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-align: center; display: grid; gap: 4px; }
+.milestone b { font: 800 1.6rem/1 var(--font-display); color: var(--accent); }
+.milestone span { font-size: .85rem; color: var(--ink-soft); }
+
+/* Night page */
+.crumbs { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: center; padding-top: 22px; }
+.crumbs a { font: 600 .95rem var(--font-display); text-decoration: none; }
+.night-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 260px); gap: 24px; align-items: end; padding-block: 18px 22px; }
+.night-head .meta { display: grid; gap: 10px; min-width: 0; }
+.night-head .menorah { max-width: 260px; }
+.verse { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; display: grid; gap: 8px; }
+.verse .he { font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.3rem); color: var(--heading); line-height: 1.35; font-weight: 500; }
+.verse .tr { font-size: 1.1rem; }
+.verse .ref { font-size: .9rem; color: var(--ink-soft); }
+.notice { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; align-items: start; border-radius: 12px; padding: 14px 16px; background: var(--flame-soft); color: var(--ink); margin-top: 16px; }
+.notice svg { width: 26px; height: 26px; }
+.notice b { font-family: var(--font-display); }
+.notice.calm { background: var(--surface-2); }
+.prep { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 16px; }
+.prep > div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; }
+.prep .label { font: 600 .78rem/1.2 var(--font-display); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.timer-start { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.timer-start p { color: var(--ink-soft); font-size: .95rem; max-width: 52ch; }
+.steps { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 14px; }
+.step { background: var(--surface); border: 1px solid var(--line); border-left: 6px solid var(--accent); border-radius: var(--radius); padding: 18px 20px; display: grid; gap: 10px; transition: box-shadow .2s, border-color .2s; }
+.step:nth-child(2) { border-left-color: var(--sky); }
+.step:nth-child(3) { border-left-color: var(--go); }
+.step:nth-child(4) { border-left-color: var(--flame); }
+.step.is-active { box-shadow: 0 0 0 3px var(--flame); }
+.step-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.step-top h3 { display: flex; gap: 10px; align-items: baseline; }
+.step-top h3 .k { font: 800 .9rem/1 var(--font-display); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.mins { font: 700 .85rem/1 var(--font-display); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.step p { max-width: 70ch; }
+.levels { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.level { background: var(--surface-2); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; }
+.level .label { font: 600 .78rem/1.2 var(--font-display); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.qs { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.q { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; }
+.q .num { width: 28px; height: 28px; border-radius: 50%; background: var(--flame-soft); color: var(--flame-ink); font: 700 .9rem/28px var(--font-display); text-align: center; }
+.q .body { display: grid; gap: 6px; justify-items: start; }
+.reveal { font: 600 .88rem/1 var(--font-display); background: none; border: 1.5px solid var(--line); color: var(--accent); border-radius: 999px; padding: 8px 12px; cursor: pointer; }
+.answer { font-weight: 600; color: var(--go-ink); }
+.hint { font-size: .9rem; color: var(--ink-soft); }
+.finish { margin-top: 18px; background: var(--surface); border: 2px solid var(--go); border-radius: var(--radius); padding: 20px; display: grid; gap: 14px; }
+.finish .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.finish .small { font-size: .92rem; color: var(--ink-soft); }
+.deeper { margin-top: 28px; border: 2px dashed var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 12px; }
+.reflist { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: .95rem; }
+.sources { margin-top: 28px; display: grid; gap: 14px; }
+.passage { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; display: grid; gap: 10px; }
+.passage .src-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 14px; align-items: baseline; }
+.passage .note { font-size: .88rem; color: var(--ink-soft); }
+.passage .he { font-size: 1.3rem; line-height: 1.75; background: var(--surface-2); border-radius: 10px; padding: 12px 14px; }
+.passage .en { max-width: 72ch; }
+.discuss { background: var(--surface-2); border-radius: var(--radius); padding: 18px 20px; display: grid; gap: 6px; }
+.pager { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 32px; }
+.pager a { display: grid; gap: 2px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; text-decoration: none; color: var(--ink); }
+.pager a:hover { border-color: var(--accent); }
+.pager a.next { text-align: right; grid-column: 2; }
+.pager span { font: 600 .8rem var(--font-display); color: var(--ink-soft); }
+
+/* Session bar */
+.session { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--band); color: var(--band-ink); padding-bottom: env(safe-area-inset-bottom, 0px); box-shadow: 0 -6px 24px rgba(0, 30, 50, .25); }
+.session .wrap { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; padding-block: 12px; }
+.session .now { display: grid; gap: 2px; min-width: 0; }
+.session .now span { font-size: .85rem; opacity: .8; }
+.session .now b { font: 700 1.05rem/1.2 var(--font-display); }
+.session .clock { font: 700 1.7rem/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.session .ctrls { display: flex; gap: 8px; flex-wrap: wrap; }
+.session button { font: 600 .9rem/1 var(--font-display); border-radius: 999px; padding: 10px 14px; border: 1.5px solid rgba(255,255,255,.55); background: transparent; color: inherit; cursor: pointer; min-height: 42px; }
+.session button.primary { background: var(--flame); border-color: var(--flame); color: #2B1A00; }
+.session-pad { height: 96px; }
+
+footer.site { background: var(--band); color: var(--band-ink); margin-top: 24px; }
+footer.site .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 22px; font-size: .9rem; }
+footer.site .motto { font: 600 .8rem var(--font-display); letter-spacing: .1em; text-transform: uppercase; }
+footer.site a { color: inherit; }
+
+/* Embedded in Google Sites: no site chrome, tighter top spacing */
+.is-embed .band, .is-embed footer.site, .is-embed .crumbs, .is-embed .pager { display: none; }
+.is-embed .section { padding-block: 28px; }
+
+@media (max-width: 900px) {
+  .nights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .hero-grid, .two-col, .tracker { grid-template-columns: minmax(0, 1fr); }
+  .menorah-wrap { order: -1; }
+  .night-head { grid-template-columns: minmax(0, 1fr); }
+  .night-head .menorah { justify-self: start; max-width: 220px; }
+  .ruler { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .milestones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .nights, .levels, .prep, .stats { grid-template-columns: minmax(0, 1fr); }
+  .pager { grid-template-columns: minmax(0, 1fr); }
+  .pager a.next { grid-column: 1; }
+  .session .clock { font-size: 1.35rem; }
+}
+@media print {
+  .band nav, .session, .timer-start, .reveal, .finish, .pager, .crumbs { display: none !important; }
+  body { background: #FFFFFF; }
+}
+</style>
+
+<div id="app"></div>
+
+<script>
+(function () {
+  "use strict";
+  var P = {"data": {"nights": [{"n": 1, "title": "A small beginning, a great miracle", "he": "נעשה בו נס והדליקו ממנו שמונה ימים", "translation": "A miracle occurred with it, and they lit from it for eight days.", "ref": "Shabbat 21b", "url": "https://www.sefaria.org/Shabbat.21b", "learn": "The Gemara tells us that after the Chashmonaim defeated their enemies, they found only one container of oil bearing the Kohen Gadol's seal. It held enough for one day, yet it supplied eight days of light. Chanukah remembers Hashem's help and the return to serving Him in the Beit HaMikdash. Our family learning is also a small beginning: ten minutes in which we make room for Torah and for one another.", "halacha": "Tonight is Friday. Light Chanukah candles before Shabbat candles, before Shabbat begins. Prepare enough oil or long-lasting candles to burn until at least half an hour after nightfall. An adult should check local times. Print this sheet beforehand; discuss and answer aloud on Shabbat.", "activity": "Tell the Chanukah story in three turns: the difficulty, the discovery, and the miracle. Each partner adds one part. Then each person names one thing that makes learning together enjoyable.", "younger": "Hold up one finger, then eight. What changed?", "older": "Why does the seal matter? How is remembering a miracle different from expecting a miracle to solve our problems?", "questions": ["How many days could the oil naturally last?", "How many days did it actually supply light?"], "answers": ["One day.", "Eight days."], "deep": "Read the selections from Rambam 3:1-3 on the reverse. He describes both rescue from oppression and the oil. Explain how these two parts belong to the same celebration.", "refs": [["Friday lighting: Shulchan Aruch, O.C. 679:1; Mishnah Berurah 679:2", "https://www.sefaria.org/Shulchan_Arukh,_Orach_Chayim.679.1"], ["Rambam 3:1-3", "https://www.sefaria.org/Mishneh_Torah,_Scroll_of_Esther_and_Hanukkah.3"]]}, {"n": 2, "title": "One more light, one more step", "he": "מעלין בקדש ואין מורידין"}, {"n": 3, "title": "Our home, our minhag", "he": "נר איש וביתו"}, {"n": 4, "title": "Lights that tell a story", "he": "להראות ולגלות הנס"}, {"n": 5, "title": "Seeing Hashem in the ordinary", "he": "מי שאמר לשמן וידלוק"}, {"n": 6, "title": "Thankfulness we can put into words", "he": "להודות ולהלל לשמך הגדול"}, {"n": 7, "title": "Rav Mordechai Eliyahu: a light that lasts", "he": "נר מצוה ותורה אור"}, {"n": 8, "title": "The brightest home is a peaceful home", "he": "גדול השלום"}], "sources": {"1": [{"ref": "Shabbat 21b | The oil miracle", "he": "שכשנכנסו יוונים להיכל טמאו כל השמנים שבהיכל וכשגברה מלכות בית חשמונאי ונצחום בדקו ולא מצאו אלא פך אחד של שמן שהיה מונח בחותמו של כהן גדול ולא היה בו אלא להדליק יום אחד נעשה בו נס והדליקו ממנו שמונה ימים לשנה אחרת קבעום ועשאום ימים טובים בהלל והודאה", "en": "When the Greeks entered the Sanctuary, they made all its oil impure. When the Chashmonaim overcame and defeated them, they searched and found only one container of oil bearing the Kohen Gadol's seal. It held enough to light for only one day. A miracle occurred, and they lit from it for eight days. The following year, they established these as festive days of praise and thanksgiving.", "url": "https://he.wikisource.org/wiki/שבת_כא_ב", "note": "Selected passage"}, {"ref": "Rambam, Hilchot Megillah vaChanukah 3:1-3 | Selections", "he": "ולא הניחו אותם לעסוק בתורה ובמצוות ... עד שריחם עליהם אלהי אבותינו, והושיעם מידם והצילם ... ולא מצאו שמן טהור במקדש אלא פך אחד ולא היה בו להדליק אלא יום אחד בלבד והדליקו ממנו נרות המערכה שמונה ימים ... ומפני זה התקינו חכמים שבאותו הדור שיהיו שמונת ימים האלו שתחלתן כ\"ה בכסליו ימי שמחה והלל", "en": "They did not allow them to study Torah and observe mitzvot ... until the God of our ancestors had mercy on them, saved them from their hands, and rescued them ... They found only one container of pure oil in the Temple, enough for just one day, and used it to light the lamps for eight days ... Therefore, the Sages of that generation established these eight days, beginning on 25 Kislev, as days of joy and praise.", "url": "https://he.wikisource.org/wiki/רמב\"ם_הלכות_מגילה_וחנוכה_ג", "note": "Excerpts from 3:1, 3:2 and 3:3, in order; omissions marked"}, {"ref": "Shulchan Aruch, O.C. 679:1 | Friday lighting", "he": "בערב שבת מדליקין נר חנוכה תחלה ואחר כך נר שבת.", "en": "On Friday afternoon, one lights the Chanukah lamp first, and afterward the Shabbat lamp.", "url": "https://he.wikisource.org/wiki/שולחן_ערוך_אורח_חיים_תרעט_א", "note": "Selected passage"}, {"ref": "Mishnah Berurah 679:2 | Enough fuel", "he": "וכבר כתבנו בשם האחרונים דצריך ליתן בה שמן עד שידלק חצי שעה אחר צאת הכוכבים וכן במדליק נרות", "en": "We have already written in the name of the later authorities that one must put in enough oil for it to burn until half an hour after nightfall. The same applies when lighting candles.", "url": "https://he.wikisource.org/wiki/שולחן_ערוך_אורח_חיים_תרעט_א", "note": "Selected passage"}]}, "discussion": {"1": "Compare the two miracles described by Rambam: rescue from oppression and the oil. Which words express our response? The selections above supply the passages needed for the front-side extension."}}, "config": {"trackerCsvUrl": "", "refreshSeconds": 300, "formUrl": "", "formUrls": {"1": "", "2": "", "3": "", "4": "", "5": "", "6": "", "7": "", "8": ""}, "pdfUrls": {"1": "../pdf/Night-1.pdf", "2": "../pdf/Night-2.pdf", "3": "../pdf/Night-3.pdf", "4": "../pdf/Night-4.pdf", "5": "../pdf/Night-5.pdf", "6": "../pdf/Night-6.pdf", "7": "../pdf/Night-7.pdf", "8": "../pdf/Night-8.pdf", "all": "../pdf/BPY-Chanukah-All-Eight-Nights.pdf"}, "championship": "Monday, December 14 (date to be confirmed)", "officeContact": "the BPY office", "showRecognition": true, "embedPdfUrls": {}}, "mode": {"embed": true, "view": "night1"}} || { data: { nights: [], sources: {}, discussion: {} }, config: {}, mode: {} };
+  var NIGHTS = P.data.nights, SOURCES = P.data.sources, DISCUSS = P.data.discussion;
+  var CFG = P.config || {}, MODE = P.mode || {};
+  var EMBED = !!MODE.embed;
+  var GOAL_MINUTES = 48000; // 800 student-hours
+  var STORE_KEY = "bpy-chanukah-2026-done";
+  var STEPS = [
+    { key: "read", name: "Read together", min: 3 },
+    { key: "halacha", name: "One halacha", min: 1 },
+    { key: "talk", name: "Talk & try", min: 4 },
+    { key: "tell", name: "Tell it back", min: 2 }
+  ];
+  // A family-learning move for each night; the Torah content itself comes from the reviewed sheets.
+  var TIPS = [
+    "An adult reads tonight. The youngest learner asks the Tell it back questions.",
+    "Switch roles: a child reads aloud or retells, and an adult asks the questions.",
+    "Invite a grandparent tonight, in person or by phone. Tonight's Talk & try was written for them.",
+    "Let the oldest child lead Talk & try and make sure everyone gets a turn.",
+    "Everyone answers Tell it back from memory before anyone checks.",
+    "Let a younger child be the reader, with help on the hard words.",
+    "Before you start, see how many of the first six night titles your family can remember together.",
+    "Before Shabbat, let each child choose one idea from the week to teach the family at the table."
+  ];
+
+  if (EMBED) { document.documentElement.setAttribute("data-theme", "light"); document.documentElement.classList.add("is-embed"); }
+
+  // ---------- helpers ----------
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function ext(url, label, cls) { return '<a href="' + esc(url) + '" target="_blank" rel="noopener"' + (cls ? ' class="' + cls + '"' : "") + ">" + label + "</a>"; }
+  function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
+  var DAY = 86400000;
+  function nightDate(n) { return new Date(2026, 11, 3 + n); } // Night 1 is lit Friday, Dec 4, 2026
+  function dateLabel(n, long) {
+    return nightDate(n).toLocaleDateString("en-US", long ? { weekday: "long", month: "long", day: "numeric" } : { weekday: "short", month: "short", day: "numeric" });
+  }
+  function today() { var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function tonightNight() {
+    var diff = Math.round((today() - nightDate(1)) / DAY);
+    if (diff < 0) return { phase: "before", days: -diff };
+    if (diff > 7) return { phase: "after" };
+    return { phase: "during", n: diff + 1 };
+  }
+  function nightsBegun() { var t = tonightNight(); return t.phase === "before" ? 0 : t.phase === "after" ? 8 : t.n; }
+  var SHABBAT = {
+    1: { title: "Friday: light before Shabbat", text: "Print this sheet before Shabbat. Light Chanukah candles before Shabbat candles, learn and answer aloud on Shabbat, and log your minutes after Shabbat." },
+    2: { title: "Saturday night: after Shabbat", text: "Wait until Shabbat has ended before lighting or using a device." },
+    8: { title: "Friday: light before Shabbat", text: "Print this sheet before Shabbat. Light Chanukah candles before Shabbat candles, learn and answer aloud on Shabbat, and log your minutes after Shabbat." }
+  };
+
+  function loadDone() { try { return new Set(JSON.parse(localStorage.getItem(STORE_KEY) || "[]")); } catch (e) { return new Set(); } }
+  function saveDone(set) { try { localStorage.setItem(STORE_KEY, JSON.stringify(Array.from(set))); } catch (e) { } }
+  var done = loadDone();
+
+  function pdfUrl(key) { return (CFG.pdfUrls || {})[key] || ""; }
+  function formUrl(n, minutes) {
+    var u = ((CFG.formUrls || {})[n]) || CFG.formUrl || "";
+    return u.replace(/\{night\}/g, n).replace(/\{minutes\}/g, minutes || "");
+  }
+
+  // ---------- menorah ----------
+  // Night 1's light sits at the far right; each night adds one to its left.
+  var LAMP_X = { 1: 380, 2: 340, 3: 300, 4: 260, 5: 160, 6: 120, 7: 80, 8: 40 };
+  function flame(x, yBase, scale) {
+    var s = scale || 1;
+    return '<g class="flame-g"><ellipse class="glow" cx="' + x + '" cy="' + (yBase - 14 * s) + '" rx="' + 13 * s + '" ry="' + 18 * s + '"/>' +
+      '<path class="flame" d="M' + x + " " + yBase + " C" + (x - 8 * s) + " " + (yBase - 8 * s) + " " + (x - 7 * s) + " " + (yBase - 19 * s) + " " + x + " " + (yBase - 30 * s) +
+      " C" + (x + 7 * s) + " " + (yBase - 19 * s) + " " + (x + 8 * s) + " " + (yBase - 8 * s) + " " + x + " " + yBase + 'Z"/>' +
+      '<path class="flame-core" d="M' + x + " " + (yBase - 2) + " C" + (x - 3.5 * s) + " " + (yBase - 6 * s) + " " + (x - 3 * s) + " " + (yBase - 11 * s) + " " + x + " " + (yBase - 16 * s) +
+      " C" + (x + 3 * s) + " " + (yBase - 11 * s) + " " + (x + 3.5 * s) + " " + (yBase - 6 * s) + " " + x + " " + (yBase - 2) + 'Z"/></g>';
+  }
+  function menorahSVG(opts) {
+    var lit = opts.lit, pend = opts.pending || 0, interactive = !!opts.interactive;
+    var out = '<svg class="menorah" viewBox="0 -10 420 210" role="' + (interactive ? "group" : "img") + '" aria-label="' + esc(opts.label) + '">';
+    out += '<rect class="metal" x="26" y="124" width="368" height="9" rx="4.5"/>';
+    out += '<rect class="metal" x="205" y="72" width="10" height="110"/>';
+    out += '<path class="metal" d="M160 192 Q210 168 260 192 Z"/><rect class="metal" x="150" y="190" width="120" height="8" rx="4"/>';
+    // shamash, set apart and higher
+    out += '<rect class="cup" x="197" y="58" width="26" height="16" rx="4"/>' + flame(210, 56, .9);
+    for (var n = 1; n <= 8; n++) {
+      var x = LAMP_X[n], isLit = lit.has(n), isPend = pend === n && !isLit;
+      var inner = '<rect class="hit" x="' + (x - 20) + '" y="70" width="40" height="90"/>' +
+        '<rect class="cup" x="' + (x - 13) + '" y="108" width="26" height="16" rx="4"/>' +
+        (isLit ? flame(x, 106) : isPend ? '<path class="pending" d="M' + x + ' 106 C' + (x - 8) + ' 98 ' + (x - 7) + ' 87 ' + x + ' 76 C' + (x + 7) + ' 87 ' + (x + 8) + ' 98 ' + x + ' 106Z"/>' :
+          '<line class="wick" x1="' + x + '" y1="108" x2="' + x + '" y2="100"/>') +
+        '<text class="num" x="' + x + '" y="154">' + n + "</text>";
+      if (interactive) {
+        var t = NIGHTS[n - 1] ? NIGHTS[n - 1].title : "";
+        out += '<a class="lamp" href="#night' + n + '" aria-label="Night ' + n + ": " + esc(t) + (isLit ? " (done)" : isPend ? " (tonight)" : "") + '">' + inner + "</a>";
+      } else out += "<g>" + inner + "</g>";
+    }
+    return out + "</svg>";
+  }
+
+  // ---------- oil jug tracker ----------
+  var tracker = { minutes: 21600, families: 132, updated: "", sample: true, error: false };
+  function jugSVG(frac) {
+    var f = Math.max(0, Math.min(1, frac)), top = 42, bottom = 222, y = bottom - f * (bottom - top);
+    var marks = [[.5, "400 h"], [.75, "600 h"], [1, "800 h"]];
+    var vessel = "M80 28 Q80 22 86 22 H114 Q120 22 120 28 V34 Q120 38 116 40 L116 62 C116 80 172 92 172 150 C172 196 140 222 100 222 C60 222 28 196 28 150 C28 92 84 80 84 62 L84 40 Q80 38 80 34 Z";
+    var begun = nightsBegun();
+    var s = '<svg class="jug" viewBox="0 0 260 270" role="img" aria-label="Oil jug ' + Math.round(f * 100) + ' percent full toward 800 student-hours">' +
+      '<defs><clipPath id="jugclip"><path d="' + vessel + '"/></clipPath>' +
+      '<linearGradient id="oilg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--oil-top)"/><stop offset="1" style="stop-color:var(--oil-bottom)"/></linearGradient></defs>' +
+      '<path class="handle" d="M86 58 C52 50 30 72 40 104"/>' +
+      '<path class="vessel" d="' + vessel + '"/>' +
+      '<g clip-path="url(#jugclip)"><rect x="20" y="' + y.toFixed(1) + '" width="170" height="' + (bottom - y + 4).toFixed(1) + '" fill="url(#oilg)"/>' +
+      (f > 0 && f < 1 ? '<line class="surface-line" x1="20" x2="190" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '"/>' : "") + "</g>" +
+      '<path d="' + vessel + '" style="fill:none;stroke:var(--heading);stroke-width:3"/>' +
+      '<circle class="seal" cx="100" cy="52" r="8"/><circle cx="100" cy="52" r="3" style="fill:var(--heading)"/>';
+    marks.forEach(function (m) {
+      var my = bottom - m[0] * (bottom - top);
+      s += '<line class="tick" x1="150" x2="198" y1="' + my + '" y2="' + my + '"/><text class="tick-label' + (f >= m[0] ? " reached" : "") + '" x="202" y="' + (my + 4) + '">' + m[1] + "</text>";
+    });
+    for (var n = 1; n <= 8; n++) {
+      var fx = 30 + (n - 1) * 20, on = n <= begun;
+      s += on ? '<path class="flame" d="M' + fx + " 262 C" + (fx - 5) + " 257 " + (fx - 4) + " 250 " + fx + " 243 C" + (fx + 4) + " 250 " + (fx + 5) + " 257 " + fx + ' 262Z"/>'
+        : '<path class="flame-off" d="M' + fx + " 262 C" + (fx - 5) + " 257 " + (fx - 4) + " 250 " + fx + " 243 C" + (fx + 4) + " 250 " + (fx + 5) + " 257 " + fx + ' 262Z"/>';
+    }
+    return s + "</svg>";
+  }
+  function trackerHTML() {
+    var frac = tracker.minutes / GOAL_MINUTES, hours = tracker.minutes / 60;
+    var next = [400, 600, 800].filter(function (h) { return hours < h; })[0];
+    var meta = tracker.sample
+      ? '<span class="chip sample">Sample numbers</span><span>The live count starts on the first night of Chanukah.</span>'
+      : tracker.error ? '<span class="chip sample">Live count unavailable</span><span>Showing the last numbers we received.</span>'
+        : '<span class="chip done">Live</span><span>Totals update after the office reviews submissions' + (tracker.updated ? " · last update " + esc(tracker.updated) : "") + ".</span>";
+    return '<div class="tracker"><div id="jug-slot">' + jugSVG(frac) + '</div><div>' +
+      '<div class="stats">' +
+      '<div class="stat"><span class="v">' + fmt(hours) + '</span><span class="k">student-hours learned</span></div>' +
+      '<div class="stat"><span class="v">' + Math.min(100, Math.round(frac * 100)) + '%</span><span class="k">of our 800-hour goal</span></div>' +
+      '<div class="stat"><span class="v">' + fmt(tracker.minutes) + '</span><span class="k">student-minutes</span></div>' +
+      '<div class="stat"><span class="v">' + fmt(tracker.families) + '</span><span class="k">families learning</span></div></div>' +
+      '<div class="progress"><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="800" aria-valuenow="' + Math.round(hours) + '" aria-label="Student-hours toward 800"><i style="width:' + Math.min(100, frac * 100).toFixed(1) + '%"></i></div>' +
+      '<div class="bar-marks"><span style="left:0">0</span><span style="left:50%">400 h</span><span style="left:75%">600 h</span><span style="left:100%">800 h</span></div></div>' +
+      '<p class="tracker-meta">' + meta + "</p>" +
+      (next ? '<p class="tracker-meta"><span>Next celebration: <b>' + next + " hours</b>, " + fmt((next - hours) * 60) + " student-minutes to go.</span></p>" : '<p class="tracker-meta"><b>We filled the jug: 800 hours of family Torah learning.</b></p>') +
+      '<div class="explain"><b>How we count.</b> Every child\'s learning time counts. If three children learn together for 20 minutes, that adds 60 student-minutes. Small flames under the jug mark the nights of Chanukah so far.</div>' +
+      "</div></div>";
+  }
+  function parseCSV(text) {
+    var rows = [], row = [], cell = "", q = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (q) { if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; } else if (c === '"') q = false; else cell += c; }
+      else if (c === '"') q = true; else if (c === ",") { row.push(cell); cell = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+      else cell += c;
+    }
+    if (cell || row.length) { row.push(cell); rows.push(row); }
+    return rows;
+  }
+  function num(v) { var x = parseFloat(String(v || "").replace(/[^0-9.\-]/g, "")); return isFinite(x) ? x : null; }
+  function refreshTracker() {
+    if (!CFG.trackerCsvUrl) return;
+    fetch(CFG.trackerCsvUrl, { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (t) {
+      var rows = parseCSV(t.trim()); if (rows.length < 2) throw new Error("empty");
+      var h = rows[0].map(function (x) { return x.trim().toLowerCase(); }), v = rows[1];
+      function col(names) { for (var i = 0; i < names.length; i++) { var k = h.indexOf(names[i]); if (k >= 0) return v[k]; } return null; }
+      var m = num(col(["total_minutes", "minutes", "student_minutes"])); if (m == null) throw new Error("no minutes column");
+      tracker = { minutes: m, families: num(col(["families", "participating_families"])) || 0, updated: (col(["updated", "last_updated"]) || "").trim(), sample: false, error: false };
+    }).catch(function () {
+      if (tracker.sample) tracker = { minutes: 0, families: 0, updated: "", sample: false, error: true };
+      else tracker.error = true;
+    }).then(function () { var slot = document.getElementById("tracker-slot"); if (slot) slot.innerHTML = trackerHTML(); });
+  }
+
+  // ---------- pages ----------
+  function band(active) {
+    function link(href, label, key) { return '<a href="#' + href + '"' + (active === key ? ' aria-current="page"' : "") + ">" + label + "</a>"; }
+    return '<header class="band"><div class="wrap"><a class="brand" href="#home"><span class="brand-mark">BPY</span><span class="brand-text"><b>Chanukah Family Learning</b><span>Ben Porat Yosef · <span class="he" lang="he">בן פורת יוסף</span></span></span></a>' +
+      "<nav aria-label=\"Site\">" + link("home", "Tonight", "home") + link("nights", "Eight nights", "nights") + link("goal", "School goal", "goal") + link("families", "For families", "families") + "</nav></div></header>";
+  }
+  function footer() {
+    return '<footer class="site"><div class="wrap"><span class="motto">Simcha through Torah, family &amp; connection</span><span>Ben Porat Yosef · Eight Lights, One Community · Chanukah 5787</span></div></footer>';
+  }
+
+  function tonightCard() {
+    var t = tonightNight();
+    if (t.phase === "before") {
+      return '<div class="tonight-card"><span class="eyebrow">Getting ready</span><p><b>Chanukah begins Friday evening, December 4.</b> ' + (t.days === 1 ? "That's tomorrow." : "That's " + t.days + " days away.") +
+        " Night 1 is a Friday, so print its sheet before Shabbat.</p><div class=\"row\"><a class=\"btn\" href=\"#night1\">Preview Night 1</a>" +
+        (pdfUrl("all") ? ext(pdfUrl("all"), "Print all eight sheets", "btn ghost") : "") + "</div></div>";
+    }
+    if (t.phase === "after") {
+      return '<div class="tonight-card"><span class="eyebrow">Chanukah has ended</span><p><b>Catch-up learning still counts.</b> Pick any night you missed and learn it together. Log the actual minutes you learn.</p><div class="row"><a class="btn" href="#nights">Choose a night</a></div></div>';
+    }
+    var n = NIGHTS[t.n - 1];
+    return '<div class="tonight-card"><span class="eyebrow">Tonight · ' + dateLabel(t.n, true) + '</span><h2>Night ' + t.n + ": " + esc(n.title) + "</h2>" +
+      (SHABBAT[t.n] ? '<p class="hint">' + esc(SHABBAT[t.n].title) + "</p>" : "") +
+      '<div class="row"><a class="btn" href="#night' + t.n + '">Start Night ' + t.n + "</a>" + (done.has(t.n) ? '<span class="chip done">Done tonight</span>' : "") + "</div></div>";
+  }
+
+  function homePage() {
+    var t = tonightNight();
+    var pend = t.phase === "during" ? t.n : 0;
+    var count = done.size;
+    var cap = count ? "Your family has learned " + count + " of 8 nights on this device. Tap a light to open that night." : "Tap a light to open that night. Lights fill in as your family marks nights done.";
+    var h = band("home") + "<main>";
+    h += '<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><span class="eyebrow">Eight Lights, One Community · December 4–11, 2026</span>' +
+      "<h1>Eight nights. Ten minutes together.</h1>" +
+      '<p class="lede">Each evening of Chanukah, learn one short piece of Torah with your child: a story, one halacha, a conversation and two quick questions. More learning whenever you wish.</p>' +
+      tonightCard() + "</div>" +
+      '<div class="menorah-wrap">' + menorahSVG({ lit: done, pending: pend, interactive: true, label: "Your family's menorah" }) + '<p class="menorah-caption">' + cap + "</p></div></div></section>";
+
+    h += '<section class="section" id="how"><div class="wrap"><div class="section-head"><span class="eyebrow">How each night works</span><h2>Ten minutes, four steps</h2><p class="lede">Each step is sized by its minutes. Answer out loud, read together, and let adults read the harder parts.</p></div>' +
+      '<div class="ruler">' +
+      '<div class="seg"><span class="min">3 <small>min</small></span><span class="what">Read together</span><span class="how">A short story or idea from the sources</span></div>' +
+      '<div class="seg"><span class="min">1 <small>min</small></span><span class="what">One halacha</span><span class="how">One practical law</span></div>' +
+      '<div class="seg"><span class="min">4 <small>min</small></span><span class="what">Talk &amp; try</span><span class="how">An activity, with a question for younger and older learners</span></div>' +
+      '<div class="seg"><span class="min">2 <small>min</small></span><span class="what">Tell it back</span><span class="how">Two questions, answered aloud</span></div></div>' +
+      '<div class="deeper-strip"><b>Go deeper, optional 5–10 minutes.</b> Original Hebrew and Aramaic sources with English translations, a deeper question and a source to compare. Extra time adds to the school goal.</div></div></section>';
+
+    h += '<section class="section" id="nights"><div class="wrap"><div class="section-head"><span class="eyebrow">The journey</span><h2>Eight nights</h2><p class="lede">Each night builds on the last, from the first small jug of oil to a home full of peace.</p></div><div class="nights">';
+    NIGHTS.forEach(function (n) {
+      var chips = "";
+      if (pend === n.n) chips += '<span class="chip tonight">Tonight</span>';
+      if (done.has(n.n)) chips += '<span class="chip done">Done</span>';
+      if (SHABBAT[n.n]) chips += '<span class="chip shabbat">' + (n.n === 2 ? "After Shabbat" : "Print before Shabbat") + "</span>";
+      h += '<a class="night-card' + (pend === n.n ? " is-tonight" : "") + '" href="#night' + n.n + '"><div class="top"><span class="n">' + n.n + '</span><span class="date">' + dateLabel(n.n) + "</span></div>" +
+        "<h3>" + esc(n.title) + '</h3><p class="he" lang="he">' + esc(n.he) + "</p>" + (chips ? '<div class="chips">' + chips + "</div>" : "") + "</a>";
+    });
+    h += "</div>" + (pdfUrl("all") ? '<p class="print-all">' + ext(pdfUrl("all"), "Download all eight printable sheets (PDF)") + "<span>Print portrait, two-sided, flip on long edge. Sources are on the back.</span></p>" : "") + "</div></section>";
+
+    h += '<section class="section" id="goal"><div class="wrap"><div class="section-head"><span class="eyebrow">Our school goal</span><h2>Fill the jug: 800 hours of family Torah learning</h2><p class="lede">Together, BPY families are filling one jug of oil. Celebrations at 400, 600 and 800 hours.</p></div><div id="tracker-slot">' + trackerHTML() + "</div></div></section>";
+
+    h += familiesSection();
+    return h + "</main>" + footer();
+  }
+
+  function familiesSection() {
+    var office = esc(CFG.officeContact || "the school office");
+    var h = '<section class="section" id="families"><div class="wrap"><div class="section-head"><span class="eyebrow">For families</span><h2>How to learn together</h2></div><div class="two-col"><div>' +
+      '<ul class="checklist">' +
+      "<li><span>Learn with a parent, sibling, grandparent or another partner. Adults may read aloud.</span></li>" +
+      "<li><span>Choose the younger or older discussion prompt, or both.</span></li>" +
+      "<li><span>Answer the two Tell it back questions out loud before you check.</span></li>" +
+      "<li><span>Going deeper is always welcome and always optional.</span></li>" +
+      "<li><span>Missed a night? Catch-up learning counts. Log the minutes you actually learned.</span></li>" +
+      "<li><span>On Shabbat, use the printed sheet and submit afterward.</span></li>" +
+      "<li><span>Each child submits separately, even when siblings learn together.</span></li></ul>";
+    if (CFG.showRecognition !== false) {
+      h += '<div style="margin-top:32px;display:grid;gap:8px"><h3>Milestones and celebrations</h3><p>Children work toward 2-, 4-, 6- and 8-night milestones, with certificates, raffles and class celebrations. Class progress is shown as a percentage, so no class is left behind by size.</p>' +
+        '<div class="milestones"><div class="milestone"><b>2</b><span>nights</span></div><div class="milestone"><b>4</b><span>nights</span></div><div class="milestone"><b>6</b><span>nights</span></div><div class="milestone"><b>8</b><span>nights</span></div></div>' +
+        '<p class="hint" style="margin-top:10px">Quiz points from the nightly forms determine finalists in elementary and middle school divisions. Finals: ' + esc(CFG.championship || "date to be announced") + ". Quiz points are kept separate from learning minutes.</p></div>";
+    }
+    h += '</div><div class="faq">' +
+      qa("We have more than one BPY child.", "Learn together in one conversation. Use the younger and older prompts so everyone has a question at their level. Then each child fills in their own form.") +
+      qa("We missed a night.", "Join again whenever you can. There is no penalty for missing a night, and catch-up learning counts. Log the minutes you actually learned.") +
+      qa("What happens on Shabbat?", "Night 1 (December 4) and Night 8 (December 11) are Fridays. Print those sheets before Shabbat, light Chanukah candles before Shabbat candles, and learn and answer aloud on Shabbat. Night 2 begins Saturday night: wait until Shabbat ends before lighting or using a device. Submit your minutes after Shabbat.") +
+      qa("Does my child need to read the Hebrew?", "No. Every source has an English translation, and adults may read aloud. The Hebrew is there for families who want to read the original together.") +
+      qa("My child doesn't have a learning partner available.", "There is a discreet alternative so every child can take part. Please contact " + office + " privately.") +
+      qa("How are minutes counted?", "We count student-minutes. Three children learning together for 20 minutes adds 60 student-minutes toward the school goal. Extra time spent going deeper adds to the school total but does not change a child's chances in prize raffles.") +
+      qa("Who sees our answers?", "Form responses go to a private school sheet that only the office can see. This site shows only anonymous schoolwide totals. Children's names and quiz results stay private unless school policy and family permission allow recognition.") +
+      qa("Is this required?", "No. Participation is voluntary. The aim is joyful learning at home, not another assignment.") +
+      "</div></div></div></section>";
+    return h;
+  }
+  function qa(q, a) { return '<details class="qa"><summary>' + esc(q) + '</summary><p class="a">' + esc(a) + "</p></details>"; }
+
+  var ICON_CANDLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-2 3-3 4.5-3 6.3A3 3 0 0 0 12 11a3 3 0 0 0 3-2.7C15 6.5 14 5 12 2z" style="fill:var(--flame)"/><rect x="9" y="12" width="6" height="10" rx="1.5" style="fill:var(--accent)"/></svg>';
+
+  function nightPage(num) {
+    var n = NIGHTS[num - 1];
+    var lit = new Set(); for (var i = 1; i <= num; i++) lit.add(i);
+    var h = (EMBED ? "" : band("nights")) + '<main class="wrap">';
+    h += '<div class="crumbs"><a href="#nights">← All eight nights</a>' + (pdfUrl(num) ? ext(pdfUrl(num), "Printable sheet (PDF)") : "") + "</div>";
+    h += '<div class="night-head"><div class="meta"><span class="eyebrow">Night ' + num + " of 8 · " + dateLabel(num, true) + " evening</span><h1>" + esc(n.title) + "</h1>" +
+      '<div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">10 minutes together</span><span class="chip">Optional 5–10 minutes deeper</span><span class="chip">K–8</span></div></div>' +
+      menorahSVG({ lit: lit, label: num + " lights tonight, plus the shamash" }) + "</div>";
+    h += '<figure class="verse" style="margin:0"><p class="he" lang="he">' + esc(n.he) + '</p><p class="tr">' + esc(n.translation) + '</p><p class="ref">' + ext(n.url, esc(n.ref)) + " · Short excerpt; original English translation.</p></figure>";
+    if (SHABBAT[num]) h += '<div class="notice">' + ICON_CANDLE + "<div><b>" + esc(SHABBAT[num].title) + ".</b> " + esc(SHABBAT[num].text) + "</div></div>";
+
+    h += '<div class="prep">' +
+      (num > 1 ? '<div><span class="label">Warm-up, 30 seconds</span><p>What do you remember from Night ' + (num - 1) + ', <i>' + esc(NIGHTS[num - 2].title) + "</i>?</p></div>"
+        : '<div><span class="label">Before you start</span><p>Sit together where everyone can see the sheet or screen. Have the candles lit or ready.</p></div>') +
+      '<div><span class="label">Tonight\'s roles</span><p>' + esc(TIPS[num - 1]) + "</p></div></div>";
+
+    h += '<div class="timer-start"><button class="btn" type="button" id="start-session">Start our 10 minutes</button><p>A gentle timer walks you through the four steps and counts your actual minutes for the form. You can also just read at your own pace.</p></div>';
+
+    h += '<ol class="steps">';
+    h += step(0, "<p>" + esc(n.learn) + "</p>");
+    h += step(1, "<p>" + esc(n.halacha) + "</p>");
+    h += step(2, "<p>" + esc(n.activity) + '</p><div class="levels"><div class="level"><span class="label">Younger learners</span><p>' + esc(n.younger) + '</p></div><div class="level"><span class="label">Older learners</span><p>' + esc(n.older) + "</p></div></div>");
+    var qs = '<p class="hint">Say your answer out loud first, then check.</p><ul class="qs">';
+    n.questions.forEach(function (q, i) {
+      qs += '<li class="q"><span class="num">' + (i + 1) + '</span><div class="body"><p>' + esc(q) + '</p><button class="reveal" type="button" data-answer="' + i + '" aria-expanded="false">Check answer</button><p class="answer" id="ans-' + i + '" hidden>' + esc(n.answers[i]) + "</p></div></li>";
+    });
+    h += step(3, qs + "</ul>");
+    h += "</ol>";
+
+    var isDone = done.has(num);
+    h += '<section class="finish" id="finish" aria-live="polite"><h2 style="font-size:1.35rem">Finished learning?</h2>' + finishBody(num, isDone, null) + "</section>";
+
+    h += '<section class="deeper"><span class="eyebrow">Go deeper · optional 5–10 minutes</span><p>' + esc(n.deep) + '</p><p class="hint">On the printed sheet, the sources are on the back. Here they are just below.</p>' +
+      '<ul class="reflist"><li>' + ext(n.url, esc(n.ref)) + "</li>" + n.refs.map(function (r) { return "<li>" + ext(r[1], esc(r[0])) + "</li>"; }).join("") + "</ul></section>";
+
+    var src = SOURCES[String(num)] || [];
+    h += '<section class="sources" aria-labelledby="src-h"><div class="section-head" style="margin:0"><span class="eyebrow">Learn from the sources</span><h2 id="src-h">Inside the sources</h2><p class="hint">Original Hebrew or Aramaic with original English translations. Excerpts are labeled, and … marks omissions. Read one passage together or explore all of them.</p></div>';
+    src.forEach(function (s, i) {
+      h += '<article class="passage"><div class="src-head"><h3>' + (i + 1) + ". " + esc(s.ref) + '</h3><span class="note">' + esc(s.note) + '</span></div><p class="he" lang="he">' + esc(s.he) + '</p><p class="en">' + esc(s.en) + "</p><p>" + ext(s.url, "Read the original text") + "</p></article>";
+    });
+    if (DISCUSS[String(num)]) h += '<div class="discuss"><span class="eyebrow">Discuss the sources</span><p>' + esc(DISCUSS[String(num)]) + "</p></div>";
+    h += "</section>";
+
+    h += '<nav class="pager" aria-label="Other nights">' +
+      (num > 1 ? '<a href="#night' + (num - 1) + '"><span>← Night ' + (num - 1) + "</span>" + esc(NIGHTS[num - 2].title) + "</a>" : "") +
+      (num < 8 ? '<a class="next" href="#night' + (num + 1) + '"><span>Night ' + (num + 1) + " →</span>" + esc(NIGHTS[num].title) + "</a>" : "") + "</nav>";
+    h += '<div class="session-pad" id="session-pad" hidden></div></main>' + (EMBED ? "" : footer());
+    h += '<div class="session" id="session" hidden><div class="wrap"><div class="now"><span id="s-step-k"></span><b id="s-step"></b></div><span class="clock" id="s-clock" aria-live="off">0:00</span><div class="ctrls"><button type="button" id="s-pause">Pause</button><button type="button" id="s-next">Next step</button><button type="button" class="primary" id="s-finish">We\'re done</button></div></div></div>';
+    return h;
+  }
+  function step(i, body) {
+    var s = STEPS[i];
+    return '<li class="step" id="step-' + i + '"><div class="step-top"><h3><span class="k">' + (i + 1) + "</span>" + s.name + '</h3><span class="mins">' + s.min + " min</span></div>" + body + "</li>";
+  }
+  function finishBody(num, isDone, minutes) {
+    var form = formUrl(num, minutes);
+    var shabbatNote = (num === 1 || num === 8) ? " If tonight is Shabbat, log your minutes after Shabbat." : "";
+    var logBtn = form ? ext(form, "Log tonight's learning", "btn go") : '<span class="btn go" aria-disabled="true">Learning form opens December 4</span>';
+    var mins = minutes ? '<p><b>You learned together for ' + minutes + " minute" + (minutes === 1 ? "" : "s") + ".</b> Enter that number on the form.</p>" : "";
+    return mins + (isDone ? '<p><span class="chip done">Night ' + num + " is lit on your menorah</span></p>" : "<p>Mark the night done to light it on your family's menorah, then log your minutes so they count toward the school goal.</p>") +
+      '<div class="actions"><button class="btn' + (isDone ? " ghost" : "") + '" type="button" id="mark-done" aria-pressed="' + isDone + '">' + (isDone ? "Marked done · undo" : "We learned together tonight") + "</button>" + logBtn +
+      (pdfUrl(num) ? ext(pdfUrl(num), "Printable sheet (PDF)", "btn ghost") : "") + "</div>" +
+      '<p class="small">Each child submits their own form. Log the minutes you actually learned.' + shabbatNote + "</p>";
+  }
+
+  // ---------- session timer ----------
+  var session = null;
+  function startSession(num) {
+    session = { num: num, step: 0, left: STEPS[0].min * 60, elapsed: 0, paused: false, timer: null };
+    document.getElementById("session").hidden = false;
+    document.getElementById("session-pad").hidden = false;
+    session.timer = setInterval(tick, 1000);
+    showStep(true);
+  }
+  function tick() {
+    if (!session || session.paused) return;
+    session.elapsed++;
+    if (session.left > 0) session.left--;
+    if (session.left === 0 && session.step < STEPS.length - 1) { session.step++; session.left = STEPS[session.step].min * 60; showStep(true); }
+    paintClock();
+  }
+  function paintClock() {
+    var el = document.getElementById("s-clock"); if (!el) return;
+    var s = session.left; el.textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+  }
+  function showStep(scroll) {
+    document.querySelectorAll(".step").forEach(function (e, i) { e.classList.toggle("is-active", i === session.step); });
+    document.getElementById("s-step-k").textContent = "Step " + (session.step + 1) + " of 4" + (session.left === 0 ? " · time's up, finish when ready" : "");
+    document.getElementById("s-step").textContent = STEPS[session.step].name;
+    document.getElementById("s-next").hidden = session.step === STEPS.length - 1;
+    paintClock();
+    if (scroll) {
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var el = document.getElementById("step-" + session.step);
+      if (el) el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+    }
+  }
+  function endSession(save) {
+    if (!session) return;
+    clearInterval(session.timer);
+    var minutes = Math.max(1, Math.ceil(session.elapsed / 60)), num = session.num;
+    session = null;
+    document.getElementById("session").hidden = true;
+    document.getElementById("session-pad").hidden = true;
+    document.querySelectorAll(".step").forEach(function (e) { e.classList.remove("is-active"); });
+    if (save) {
+      done.add(num); saveDone(done);
+      var f = document.getElementById("finish");
+      f.innerHTML = '<h2 style="font-size:1.35rem">Kol hakavod!</h2>' + finishBody(num, true, minutes);
+      f.scrollIntoView({ block: "center" });
+    }
+  }
+
+  // ---------- routing ----------
+  var HOME_SECTIONS = { nights: 1, goal: 1, families: 1, how: 1 };
+  function route() {
+    if (session) endSession(false);
+    var token = (location.hash || "").replace(/^#/, "");
+    if (MODE.view) token = MODE.view;
+    var app = document.getElementById("app");
+    var m = /^night([1-8])$/.exec(token);
+    if (m) {
+      app.innerHTML = nightPage(+m[1]);
+      document.title = "Night " + m[1] + " · BPY Chanukah Family Learning";
+      if (!MODE.view) window.scrollTo(0, 0);
+    } else if (token === "tracker" && EMBED) {
+      app.innerHTML = '<main class="section"><div class="wrap"><div class="section-head"><span class="eyebrow">Our school goal</span><h2>Fill the jug: 800 hours of family Torah learning</h2></div><div id="tracker-slot">' + trackerHTML() + "</div></div></main>";
+    } else {
+      app.innerHTML = homePage();
+      document.title = "BPY Chanukah Family Learning";
+      var target = HOME_SECTIONS[token] && document.getElementById(token);
+      if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+      var nav = document.querySelector('.band nav a[href="#' + token + '"]');
+      if (nav) { document.querySelectorAll(".band nav a").forEach(function (a) { a.removeAttribute("aria-current"); }); nav.setAttribute("aria-current", "page"); }
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("button, a");
+    if (!t) return;
+    if (t.id === "start-session") { var m = /night([1-8])/.exec(MODE.view || location.hash); startSession(m ? +m[1] : 1); }
+    else if (t.id === "s-pause" && session) { session.paused = !session.paused; t.textContent = session.paused ? "Resume" : "Pause"; }
+    else if (t.id === "s-next" && session) { session.step = Math.min(STEPS.length - 1, session.step + 1); session.left = STEPS[session.step].min * 60; showStep(true); }
+    else if (t.id === "s-finish") endSession(true);
+    else if (t.id === "mark-done") {
+      var k = /night([1-8])/.exec(MODE.view || location.hash), num = k ? +k[1] : 1;
+      if (done.has(num)) done.delete(num); else done.add(num);
+      saveDone(done);
+      document.getElementById("finish").innerHTML = '<h2 style="font-size:1.35rem">' + (done.has(num) ? "Kol hakavod!" : "Finished learning?") + "</h2>" + finishBody(num, done.has(num), null);
+    } else if (t.classList.contains("reveal")) {
+      var a = document.getElementById("ans-" + t.getAttribute("data-answer"));
+      a.hidden = !a.hidden; t.setAttribute("aria-expanded", String(!a.hidden)); t.textContent = a.hidden ? "Check answer" : "Hide answer";
+    } else if (t.matches && t.matches('a[href^="#"]') && MODE.view) {
+      e.preventDefault(); // embeds show one fixed view
+    }
+  });
+
+  window.addEventListener("hashchange", route);
+  route();
+  refreshTracker();
+  if (CFG.trackerCsvUrl) setInterval(refreshTracker, Math.max(60, CFG.refreshSeconds || 300) * 1000);
+})();
+</script>
+
+</html>
