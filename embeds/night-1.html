@@ -822,17 +822,14 @@ html.is-framed #app { position: fixed; inset: 0; overflow-y: auto; -webkit-overf
     }
   });
 
-  // Embeds have no site band, so each one opens with the school logo, a donate link and,
-  // inside Google Sites, a way out to full screen.
+  // Embeds have no site band, so each one opens with the school logo and a donate link.
   if (EMBED) {
     var renderView = route;
     route = function () {
       renderView();
-      var full = MODE.home ? "../index.html" + (location.hash || "") : location.href.split("#")[0];
       document.getElementById("app").insertAdjacentHTML("afterbegin",
         '<div class="brandband"><div class="wrap brandbar"><span class="logo"><img src="' + esc(LOGO) + '" alt="Ben Porat Yosef"><span>Chanukah Family Learning<small>Eight Lights, One Community</small></span></span>' +
-        '<span class="acts">' + (DONATE ? ext(DONATE, "Donate", "pill give") : "") +
-        (FRAMED ? ext(full, "Open full screen ↗", "pill") : "") + "</span></div></div>");
+        '<span class="acts">' + (DONATE ? ext(DONATE, "Donate", "pill give") : "") + "</span></div></div>");
     };
   }
   window.addEventListener("hashchange", route);
